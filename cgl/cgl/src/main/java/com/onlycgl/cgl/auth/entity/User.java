@@ -3,13 +3,7 @@ package com.onlycgl.cgl.auth.entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,13 +25,14 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String role;
+    private Role role;
 
     // Setters
-    public User setUserName(String username) {
-        this.username = username; // Assuming fullName is stored in username
-    return this;
+    public User setUsername(String username) {
+        this.username = username;
+        return this;
     }
 
     public User setEmail(String email) {
@@ -50,19 +45,20 @@ public class User implements UserDetails {
         return this;
     }
 
-    public User setRole(String role) {
+    public User setRole(Role role) {
         this.role = role;
         return this;
     }
 
     // Getters
-    public String getRole() {
+    public Role getRole() {
         return this.role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(role));
+        // Prefixing with "ROLE_" is a common convention in Spring Security
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
     @Override
@@ -77,21 +73,21 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return true; // Modify if needed based on your business logic
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return true; // Modify if needed based on your business logic
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return true; // Modify if needed based on your business logic
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return true; // Modify if needed based on your business logic
     }
 }

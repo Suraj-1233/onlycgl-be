@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/mocktests/**").hasRole("ADMIN") // Only ADMIN can access mock tests
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
