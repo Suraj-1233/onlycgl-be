@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MockTestDetailDTO {
 
-    private Integer mockTestId;
+    private Long mockTestId;
     private String title;
     private Integer duration;
     private Integer totalQuestions;
@@ -12,11 +12,11 @@ public class MockTestDetailDTO {
 
     // Getters and Setters
 
-    public Integer getMockTestId() {
+    public Long getMockTestId() {
         return mockTestId;
     }
 
-    public void setMockTestId(Integer mockTestId) {
+    public void setMockTestId(Long mockTestId) {
         this.mockTestId = mockTestId;
     }
 

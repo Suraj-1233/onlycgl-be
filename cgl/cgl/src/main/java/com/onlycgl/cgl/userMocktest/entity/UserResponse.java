@@ -1,5 +1,9 @@
 package com.onlycgl.cgl.userMocktest.entity;
 
+import com.onlycgl.cgl.auth.entity.User;
+import com.onlycgl.cgl.createMocktest.entity.MockTest;
+import com.onlycgl.cgl.createMocktest.entity.Question;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,16 +12,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-import java.io.Serializable;
-
-import com.onlycgl.cgl.auth.entity.User;
-import com.onlycgl.cgl.createMocktest.entity.MockTest;
-import com.onlycgl.cgl.createMocktest.entity.Question;
-
 @Entity
 @Table(name = "user_responses")
-public class UserResponse implements Serializable {
-    
+public class UserResponse {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long responseId;
@@ -34,27 +32,13 @@ public class UserResponse implements Serializable {
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-   
-
     private String selectedOption;
     private Boolean isCorrect;
     private Integer marksAwarded;
     private Integer timeTaken; // in seconds
 
-    // Constructors
-    public UserResponse() {}
-
-    public UserResponse(User user, MockTest mockTest, Question question, String selectedOption, Boolean isCorrect, Integer marksAwarded, Integer timeTaken) {
-        this.user = user;
-        this.mockTest = mockTest;
-        this.question = question;
-        this.selectedOption = selectedOption;
-        this.isCorrect = isCorrect;
-        this.marksAwarded = marksAwarded;
-        this.timeTaken = timeTaken;
-    }
-
     // Getters and Setters
+
     public Long getResponseId() {
         return responseId;
     }
@@ -118,7 +102,4 @@ public class UserResponse implements Serializable {
     public void setTimeTaken(Integer timeTaken) {
         this.timeTaken = timeTaken;
     }
-
-    // Optional: Override toString for better logging and debugging
-
 }

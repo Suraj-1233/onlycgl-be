@@ -21,7 +21,7 @@ public class MockTest {
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer mocktestId;
+    private Long mocktestId;
 
     @Column(nullable = false)
     private String title;
@@ -53,11 +53,11 @@ public class MockTest {
 
     // Getters and Setters
 
-    public Integer getMocktestId() {
+    public Long getMocktestId() {
         return mocktestId;
     }
 
-    public void setMocktestId(Integer mocktestId) {
+    public void setMocktestId(Long mocktestId) {
         this.mocktestId = mocktestId;
     }
 

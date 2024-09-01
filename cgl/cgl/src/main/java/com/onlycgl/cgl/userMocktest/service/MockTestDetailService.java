@@ -25,7 +25,7 @@ public class MockTestDetailService {
     @Autowired
     private QuestionTranslationRepository questionTranslationRepository;
 
-    public MockTestDetailDTO getMockTestDetail(Integer mockTestId) {
+    public MockTestDetailDTO getMockTestDetail(Long mockTestId) {
         MockTest mockTest = mockTestRepository.findById(mockTestId).orElse(null);
         if (mockTest == null) {
             return null; // Or handle accordingly
